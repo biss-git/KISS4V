@@ -1,24 +1,37 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
-  version: 1.0.0
-  title: タイトル
+  description: "これは KISS4V に関するAPIです。KISS4V を Windows上で起動することで、下記のAPIテストが実行できるようになります。"
+  version: "1.0.0"
+  title: "KISS4V API"
+  termsOfService: "https://github.com/biss-git/KISS4V"
+  contact:
+    email: "kotonohashimai@gmail.com"
+  license:
+    name: "MIT License"
+    url: "https://github.com/biss-git/KISS4V/blob/main/LICENSE"
+tags:
+- name: "server"
+  description: "KISS4V に対する API"
+- name: "voiceroid/process"
+  description: "ボイスロイドプロセスに対する API"
 paths:
-  '/user/{id}':
+  /server:
     get:
-      description: ユーザー情報取得
-      parameters:
-      - name: id
-        in: path
-        description: user id
-        required: true
-        type: number
+      tags:
+      - "server"
+      summary: "KISS サーバー情報"
+      description: "ローカルで実行されている KISS4V のバージョンなどを返します。"
       responses:
-        '200':
-          description: 成功
+        200:
+          description: "成功時のレスポンス"
           schema:
-            type: object
+            type: "object"
             properties:
-              id:
-                type: integer
-              username:
-                type: string
+              version:
+                type: "string"
+                example: "1.0.0.0"
+
+host: "localhost:51008"
+basePath: "/api"
+schemes: [http, https]
+
