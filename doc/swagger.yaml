@@ -1,0 +1,24 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: タイトル
+paths:
+  '/user/{id}':
+    get:
+      description: ユーザー情報取得
+      parameters:
+      - name: id
+        in: path
+        description: user id
+        required: true
+        type: number
+      responses:
+        '200':
+          description: 成功
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+              username:
+                type: string

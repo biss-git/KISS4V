@@ -1,0 +1,99 @@
+﻿<Controls:MetroWindow x:Class="KISS4V.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:KISS4V"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:tb="http://www.hardcodet.net/taskbar"
+                      mc:Ignorable="d"
+                      Title="KISS4V 設定画面" Height="550" Width="800"
+                      Visibility="Visible"
+                      ShowInTaskbar="True"
+                      Closing="MetroWindow_Closing"
+                      IsMinButtonEnabled="False"
+                      ResizeMode="CanResizeWithGrip"
+                      ShowIconOnTitleBar="True"
+                      x:Name="mainWindow">
+    <Controls:MetroWindow.LeftWindowCommands>
+        <Controls:WindowCommands>
+            <Image Source="image/琴葉茜.ico" Margin="2" Width="35"/>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.LeftWindowCommands>
+
+    <Window.Resources>
+        <!-- カスタムボタンのスタイル -->
+        <Style x:Key="HoverImageStyle" TargetType="{x:Type Image}">
+            <Setter Property="Margin" Value="20,35,20,5"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Margin" Value="15,25,15,5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+
+    <DockPanel>
+        <Label x:Name="stateLabel" Content="{Binding stateText}" DockPanel.Dock="Bottom"/>
+        <TabControl Width="{Binding ElementName=stateLabel, Path=ActualWidth}" SelectionChanged="MainTab_SelectionChanged" Name="mainTab" TabStripPlacement="Left" Foreground="{x:Null}" BorderBrush="{x:Null}">
+            <TabItem>
+                <TabItem.Header>
+                    <DockPanel Width="90" Height="120">
+                        <Label x:Name="commonLabel" Content="基本・共通" DockPanel.Dock="Bottom" HorizontalContentAlignment="Center" FontSize="16" Foreground="{Binding tabFontColor1}"/>
+                        <Image x:Name="commonImage" Source="{Binding tabImage1}" Style="{StaticResource HoverImageStyle}"/>
+                    </DockPanel>
+                </TabItem.Header>
+                <Label x:Name="common">aaa</Label>
+                <!--<local:Input x:Name="input" Drop="Window_Drop" PreviewDragOver="Window_PreviewDragOver" AllowDrop="True"/>-->
+            </TabItem>
+            <TabItem>
+                <TabItem.Header >
+                    <DockPanel Width="90" Height="120">
+                        <Label x:Name="talkLabel" Content="ボイロ操作" DockPanel.Dock="Bottom" HorizontalContentAlignment="Center" FontSize="16" Foreground="{Binding tabFontColor2}"/>
+                        <Image x:Name="talkImage" Source="{Binding tabImage2}" Style="{StaticResource HoverImageStyle}"/>
+                    </DockPanel>
+                </TabItem.Header>
+                <local:talk x:Name="talk"/>
+                <!--<local:Analyzer x:Name="analyzer" Drop="Window_Drop" PreviewDragOver="Window_PreviewDragOver" AllowDrop="True"/>-->
+            </TabItem>
+            <TabItem >
+                <TabItem.Header >
+                    <DockPanel Width="90" Height="120">
+                        <Label x:Name="listenLabel" Content="音声認識" DockPanel.Dock="Bottom" HorizontalContentAlignment="Center" FontSize="16" Foreground="{Binding tabFontColor3}"/>
+                        <Image x:Name="listenImage" Source="{Binding tabImage3}" Style="{StaticResource HoverImageStyle}"/>
+                    </DockPanel>
+                </TabItem.Header>
+                <local:listen x:Name="listen"/>
+                <!--<local:Converter x:Name="converter" Drop="Window_Drop" PreviewDragOver="Window_PreviewDragOver" AllowDrop="True"/>-->
+            </TabItem>
+            <TabItem >
+                <TabItem.Header >
+                    <DockPanel  Width="90" Height="120">
+                        <Label x:Name="apiLabel" Content="openAPI" DockPanel.Dock="Bottom" HorizontalContentAlignment="Center" FontSize="16" Foreground="{Binding tabFontColor4}"/>
+                        <Image x:Name="apiImage" Source="{Binding tabImage4}" Style="{StaticResource HoverImageStyle}"/>
+                    </DockPanel>
+                </TabItem.Header>
+                <local:api x:Name="api"/>
+                <!--<local:Configuration x:Name="configuration" Drop="Window_Drop" PreviewDragOver="Window_PreviewDragOver" AllowDrop="True"/>-->
+            </TabItem>
+        </TabControl>
+
+
+        <!--タスクトレイ-->
+        <tb:TaskbarIcon IconSource="image/琴葉茜.ico" MenuActivation="All">
+            <tb:TaskbarIcon.TrayToolTip>
+                <Label Background="Crimson">KISS4V</Label>
+            </tb:TaskbarIcon.TrayToolTip>
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Click="MenuItem_ShowWindow" Header="設定画面を開く" />
+                    <MenuItem Click="MenuItem_Directory"  Header="アプリフォルダを開く" />
+                    <MenuItem Click="MenuItem_Shoutdown" Header="プログラムを停止する" />
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
+        <!--<Button Margin="243,78,376,276">テスト</Button>
+        <GroupBox Margin="57,168,227,43" Name="aaa"></GroupBox>-->
+    </DockPanel>
+</Controls:MetroWindow>
