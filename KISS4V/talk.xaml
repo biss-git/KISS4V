@@ -51,46 +51,46 @@
                         <RowDefinition Height="27"/>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0">VOICEROID2</Label>
-                    <Label Grid.Row="0" Grid.Column="1" Content="{Binding Voiceroid2Exe}" BorderBrush="#FFCCCCCC" BorderThickness="1"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Voiceroid2Exe}"/>
                     <Button Grid.Row="0" Grid.Column="2" DataContext="Voiceroid2" Click="Button_SelectExe">選択</Button>
                     <Label Grid.Row="1" Grid.Column="0">ガイノイドTalk</Label>
-                    <Label Grid.Row="1" Grid.Column="1" Content="{Binding GynoidTalkExe}" BorderBrush="#FFCCCCCC" BorderThickness="1"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding GynoidTalkExe}"/>
                     <Button Grid.Row="1" Grid.Column="2" DataContext="GynoidTalk" Click="Button_SelectExe">選択</Button>
                     <Label Grid.Row="2" Grid.Column="0">結月ゆかり</Label>
-                    <Label Grid.Row="2" Grid.Column="1" Content="{Binding YukariExExe}" BorderBrush="#FFCCCCCC" BorderThickness="1"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding YukariExExe}"/>
                     <Button Grid.Row="2" Grid.Column="2" DataContext="YukariEx" Click="Button_SelectExe">選択</Button>
                     <Label Grid.Row="3" Grid.Column="0">弦巻マキ</Label>
-                    <Label Grid.Row="3" Grid.Column="1" Content="{Binding MakiExExe}" BorderBrush="#FFCCCCCC" BorderThickness="1"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding MakiExExe}"/>
                     <Button Grid.Row="3" Grid.Column="2" DataContext="MakiEx" Click="Button_SelectExe">選択</Button>
                     <Label Grid.Row="4" Grid.Column="0">東北ずん子</Label>
-                    <Label Grid.Row="4" Grid.Column="1" Content="{Binding ZunkoExExe}" BorderBrush="#FFCCCCCC" BorderThickness="1"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding ZunkoExExe}"/>
                     <Button Grid.Row="4" Grid.Column="2" DataContext="ZunkoEx" Click="Button_SelectExe">選択</Button>
                     <Label Grid.Row="5" Grid.Column="0">東北きりたん</Label>
-                    <Label Grid.Row="5" Grid.Column="1" Content="{Binding KiritanExExe}" BorderBrush="#FFCCCCCC" BorderThickness="1"/>
+                    <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding KiritanExExe}"/>
                     <Button Grid.Row="5" Grid.Column="2" DataContext="KiritanEx" Click="Button_SelectExe">選択</Button>
                     <Label Grid.Row="6" Grid.Column="0">琴葉茜</Label>
-                    <Label Grid.Row="6" Grid.Column="1" Content="{Binding AkaneExe}" BorderBrush="#FFCCCCCC" BorderThickness="1"/>
+                    <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding AkaneExe}"/>
                     <Button Grid.Row="6" Grid.Column="2" DataContext="Akane" Click="Button_SelectExe">選択</Button>
                     <Label Grid.Row="7" Grid.Column="0">琴葉葵</Label>
-                    <Label Grid.Row="7" Grid.Column="1" Content="{Binding AoiExe}" BorderBrush="#FFCCCCCC" BorderThickness="1"/>
+                    <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding AoiExe}"/>
                     <Button Grid.Row="7" Grid.Column="2" DataContext="Aoi" Click="Button_SelectExe">選択</Button>
                     <Label Grid.Row="8" Grid.Column="0">月読アイ</Label>
-                    <Label Grid.Row="8" Grid.Column="1" Content="{Binding AiExExe}" BorderBrush="#FFCCCCCC" BorderThickness="1"/>
+                    <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding AiExExe}"/>
                     <Button Grid.Row="8" Grid.Column="2" DataContext="AiEx" Click="Button_SelectExe">選択</Button>
                     <Label Grid.Row="9" Grid.Column="0">月読ショウタ</Label>
-                    <Label Grid.Row="9" Grid.Column="1" Content="{Binding ShoutaExExe}" BorderBrush="#FFCCCCCC" BorderThickness="1"/>
+                    <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding ShoutaExExe}"/>
                     <Button Grid.Row="9" Grid.Column="2" DataContext="ShoutaEx" Click="Button_SelectExe">選択</Button>
                     <Label Grid.Row="10" Grid.Column="0">京町セイカ</Label>
-                    <Label Grid.Row="10" Grid.Column="1" Content="{Binding SeikaExExe}" BorderBrush="#FFCCCCCC" BorderThickness="1"/>
+                    <TextBox Grid.Row="10" Grid.Column="1" Text="{Binding SeikaExExe}"/>
                     <Button Grid.Row="10" Grid.Column="2" DataContext="SeikaEx" Click="Button_SelectExe">選択</Button>
                     <Label Grid.Row="11" Grid.Column="0">水奈瀬コウ</Label>
-                    <Label Grid.Row="11" Grid.Column="1" Content="{Binding KouExExe}" BorderBrush="#FFCCCCCC" BorderThickness="1"/>
+                    <TextBox Grid.Row="11" Grid.Column="1" Text="{Binding KouExExe}"/>
                     <Button Grid.Row="11" Grid.Column="2" DataContext="KouEx" Click="Button_SelectExe">選択</Button>
                     <Label Grid.Row="12" Grid.Column="0">ギャラ子</Label>
-                    <Label Grid.Row="12" Grid.Column="1" Content="{Binding GalacoTalkExe}" BorderBrush="#FFCCCCCC" BorderThickness="1"/>
+                    <TextBox Grid.Row="12" Grid.Column="1" Text="{Binding GalacoTalkExe}"/>
                     <Button Grid.Row="12" Grid.Column="2" DataContext="GalacoTalk" Click="Button_SelectExe">選択</Button>
                     <Label Grid.Row="13" Grid.Column="0">音街ウナ</Label>
-                    <Label Grid.Row="13" Grid.Column="1" Content="{Binding UnaTalkExExe}" BorderBrush="#FFCCCCCC" BorderThickness="1"/>
+                    <TextBox Grid.Row="13" Grid.Column="1" Text="{Binding UnaTalkExExe}"/>
                     <Button Grid.Row="13" Grid.Column="2" DataContext="UnaTalkEx" Click="Button_SelectExe">選択</Button>
                 </Grid>
             </TabItem>

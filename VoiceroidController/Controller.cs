@@ -26,7 +26,7 @@ namespace VoiceroidController
         /// <param name="text"> 読み上げたいテキスト。無い場合はそのまま再生 </param>
         /// <param name="voiceroidId"> 対象のボイスロイド。無い場合は最初に見つけたやつ </param>
         /// <returns> true/false = 成功/失敗 </returns>
-        public static async Task<bool> Play(string text = "", VoiceroidId? voiceroidId = null)
+        public static async Task<bool> Play(string text = "", VoiceroidId? voiceroidId = null, VoiceroidCommand command = null)
         {
             await factory.Update();
             foreach( IProcess process in factory.Processes)
@@ -35,14 +35,19 @@ namespace VoiceroidController
                     (string.IsNullOrWhiteSpace(text) || await SetText(process, text)) &&
                     await process.Play())
                 {
+                    if (command != null)
+                    {
+                        command.TalkText = await process.GetTalkText();
+                        command.voiceroidName = Enum.GetName(typeof(VoiceroidId), process.Id);
+                    }
                     return true;
                 }
             }
             return false;
         }
-        public static async Task<bool> PlayByName(string text = "", string voiceroidName = "")
+        public static async Task<bool> PlayByName(string text = "", string voiceroidName = "", VoiceroidCommand command = null)
         {
-            return await Play(text, GetVoiceroidIdByName(voiceroidName));
+            return await Play(text, GetVoiceroidIdByName(voiceroidName), command);
         }
 
 
@@ -78,7 +83,7 @@ namespace VoiceroidController
         /// <param name="voiceroidId"> 対象のボイスロイド。無い場合は最初に見つけたやつ </param>
         /// <param name="filePathRequest"> 保存に使いたいファイル名。無い場合はデフォルト値 </param>
         /// <returns></returns>
-        public static async Task<string> Save(string text = "", VoiceroidId? voiceroidId = null, string filePathRequest = null)
+        public static async Task<string> Save(string text = "", VoiceroidId? voiceroidId = null, string filePathRequest = null, VoiceroidCommand command = null)
         {
             await factory.Update();
             string filePath = string.IsNullOrWhiteSpace(filePathRequest) ?
@@ -96,15 +101,20 @@ namespace VoiceroidController
                     var result = await process.Save(filePath);
                     if (result.IsSucceeded)
                     {
+                        if (command != null)
+                        {
+                            command.TalkText = await process.GetTalkText();
+                            command.voiceroidName = Enum.GetName(typeof(VoiceroidId), process.Id);
+                        }
                         return result.FilePath;
                     }
                 }
             }
             return null;
         }
-        public static async Task<string> SaveByName(string text = "", string voiceroidName = "", string filePathRequest = null)
+        public static async Task<string> SaveByName(string text = "", string voiceroidName = "", string filePathRequest = null, VoiceroidCommand command = null)
         {
-            return await Save(text, GetVoiceroidIdByName(voiceroidName), filePathRequest);
+            return await Save(text, GetVoiceroidIdByName(voiceroidName), filePathRequest, command);
         }
 
         /// <summary>

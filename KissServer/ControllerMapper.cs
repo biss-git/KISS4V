@@ -6,6 +6,7 @@ using System.IO;
 using System.Collections.Specialized;
 using DataManager;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace KissServer
 {
@@ -26,7 +27,7 @@ namespace KissServer
         /// </summary>
         /// <param name="req">リクエスト情報</param>
         /// <param name="res">レスポンス情報</param>
-        public void Execute(HttpListenerRequest req, HttpListenerResponse res)
+        public async Task Execute(HttpListenerRequest req, HttpListenerResponse res)
         {
             StreamReader reader = null;
             StreamWriter writer = null;
@@ -44,7 +45,7 @@ namespace KissServer
                 reqBody = reader.ReadToEnd();
 
                 LogStart(req, reqBody);
-                resBoby = ExecuteController(req, res, reqBody);
+                resBoby = await ExecuteController(req, res, reqBody);
             }
             catch (Exception ex)
             {
@@ -109,13 +110,13 @@ namespace KissServer
         /// <param name="res">レスポンス情報</param>
         /// <param name="reqBody">リクエストボディ</param>
         /// <returns>レスポンス文字列</returns>
-        private string ExecuteController(HttpListenerRequest req, HttpListenerResponse res, string reqBody)
+        private async Task<string> ExecuteController(HttpListenerRequest req, HttpListenerResponse res, string reqBody)
         {
             string path = ApiCommon.GetApiPath(req.RawUrl);
 
             if (path.StartsWith("/voiceroid/process"))
             {
-                return VoiceroidProcess.Execute(req, res, reqBody);
+                return await VoiceroidProcess.Execute(req, res, reqBody);
             }
             else if (path.StartsWith("/voiceroid/task"))
             {

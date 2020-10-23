@@ -30,8 +30,89 @@ paths:
               version:
                 type: "string"
                 example: "1.0.0.0"
+  
+  /voiceroid/process:
+    get:
+      tags:
+      - "voiceroid/process"
+      summary: "ボイスロイドプロセスの状態"
+      description: "ボイスロイドの状態を取得する。ボイスロイド名を指定しない場合は全てのプロセス。"
+      parameters:
+      - name: "voiceroidName"
+        type: string
+        in: "query"
+        description: "ボイスロイド名 (Voiceroid2 | GynoidTalk | YukariEx | MakiEx | ZunkoEx | KiritanEx | Akane | Aoi | AiEx | ShoutaEx | SeikaEx | KouEx | GalacoTalk | UnaTalkEx)"
+      responses:
+        "200":
+          description: "成功時のレスポンス"
+          schema:
+            type: "object"
+            properties:
+              processes:
+                type: "array"
+                items:
+                  type: object
+                example:
+                - voiceroidName: "Voiceroid2"
+                  Name: "VOICEROID2"
+                  Product: "VOICEROID2 Editor"
+                  DisplayProduct: "VOICEROID2"
+                  HasMultiCharacters: boolean (複数キャラクターを保持しているか否かを取得する。)
+                  CanSaveBlankText: boolean (空白文の音声保存を行えるか否かを取得する。)
+                  IsStartup: boolean (プロセスが起動中であるか否かを取得する。)
+                  IsRunning: boolean (プロセスが実行中であるか否かを取得する。)
+                  IsPlaying: boolean (トークテキストを再生中であるか否かを取得する。)
+                  IsSaving: boolean (トークテキストをWAVEファイル保存中であるか否かを取得する。)
+                  IsDialogShowing: boolean (いずれかのダイアログが表示中であるか否かを取得する。)
+                  TalkText: "ボイスロイドエディタに記入されているテキスト"
+                  CharacterName: "キャラクター名、または、ボイスプリセット名"
+    post:
+      tags:
+      - "voiceroid/process"
+      summary: "ボイスロイドの指示"
+      description: "ボイスロイドに再生・保存・停止などの指示を送信する。"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "再生・保存・停止・起動・終了の指示内容を入力する。"
+        required: true
+        schema:
+          type: object
+          required:
+          - command
+          properties:
+            command:
+              type: string
+              example: "play | save | stop | run | exit"
+            TalkText:
+              type: string
+              example: "再生したり、保存したりしたいテキスト。なくてもいい。"
+            voiceroidName:
+              type: string
+              example: "Voiceroid2 など、操作したいボイスロイドの名称。なくてもいい。"
+      responses:
+        "200":
+          description: "成功時のレスポンス"
+          schema:
+            type: "object"
+            required:
+            - success
+            - command
+            properties:
+              success:
+                type: boolean
+              command:
+                type: string
+              TalkText:
+                type: string
+              voiceroidName:
+                type: string
 
-host: "localhost:51008"
+
+
+              
+
+host: "127.0.0.1:51008"
 basePath: "/api"
-schemes: [http, https]
+schemes: [http]
 

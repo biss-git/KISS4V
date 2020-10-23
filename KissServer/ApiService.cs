@@ -32,6 +32,7 @@ namespace KissServer
             }
             catch (Exception error)
             {
+                DCM.stateText = "サーバーの立ち上げに失敗しました。" + error.Message;
             }
         }
 
@@ -68,7 +69,7 @@ namespace KissServer
         /// リクエスト時の処理を実行する
         /// </summary>
         /// <param name="result">結果</param>
-        private static void OnRequested(IAsyncResult result)
+        private static async void OnRequested(IAsyncResult result)
         {
             HttpListener clsListener = (HttpListener)result.AsyncState;
             if (!clsListener.IsListening)
@@ -79,10 +80,11 @@ namespace KissServer
             HttpListenerContext context = clsListener.EndGetContext(result);
             HttpListenerRequest req = context.Request;
             HttpListenerResponse res = context.Response;
-
+            res.AddHeader("Access-Control-Allow-Origin", "*"); // どこからのリクエストでも受け取る
+            res.AddHeader("Access-Control-Allow-Headers", "*"); // どこからのリクエストでも受け取る
             try
             {
-                mapper.Execute(req, res);
+                await mapper.Execute(req, res);
             }
             catch (Exception ex)
             {
