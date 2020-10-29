@@ -21,9 +21,10 @@ namespace KissServer
             listener = new HttpListener();
             try
             {
-                string rootUrl = String.Format("http://+:{0}/{1}/", ConstData.ApiPort, ConstData.ApiPath);
-                //DCM.rootUrl = "http://*:" + ConstData.ApiPort.ToString() + "/";
-                DCM.rootUrl = String.Format("http://127.0.0.1:{0}/{1}/", ConstData.ApiPort, ConstData.ApiPath);
+                // string rootUrl = String.Format("http://+:{0}/{1}/", ConstData.ApiPort, ConstData.ApiPath);
+                // DCM.rootUrl = String.Format("http://127.0.0.1:{0}/{1}/", ConstData.ApiPort, ConstData.ApiPath);
+                string rootUrl = String.Format("http://localhost:{0}/{1}/", ConstData.ApiPort, ConstData.ApiPath);
+                DCM.rootUrl = String.Format("http://localhost:{0}/{1}/", ConstData.ApiPort, ConstData.ApiPath);
 
                 listener.Prefixes.Clear();
                 listener.Prefixes.Add(rootUrl);
@@ -82,6 +83,7 @@ namespace KissServer
             HttpListenerResponse res = context.Response;
             res.AddHeader("Access-Control-Allow-Origin", "*"); // どこからのリクエストでも受け取る
             res.AddHeader("Access-Control-Allow-Headers", "*"); // どこからのリクエストでも受け取る
+            res.AddHeader("Access-Control-Allow-Methods", "*"); // どこからのリクエストでも受け取る
             try
             {
                 await mapper.Execute(req, res);

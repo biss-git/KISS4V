@@ -112,7 +112,8 @@ paths:
 
               
 
-host: "127.0.0.1:51008"
+# host: "127.0.0.1:51008"
+host: "localhost:51008"
 basePath: "/api"
 schemes: [http]
 
