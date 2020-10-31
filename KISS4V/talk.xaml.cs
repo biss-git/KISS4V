@@ -1,18 +1,6 @@
 ﻿using DataManager;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 using VoiceroidController;
 using MSAPI = Microsoft.WindowsAPICodePack;
@@ -32,7 +20,7 @@ namespace KISS4V
             DataContext = DCM;
 
 
-            for(int i = 0; i < charaCombo.Items.Count; i++)
+            for (int i = 0; i < charaCombo.Items.Count; i++)
             {
                 var item = charaCombo.Items[i] as ComboBoxItem;
                 if (item.DataContext.ToString() == DCM.selectedCharaName)
@@ -44,7 +32,7 @@ namespace KISS4V
 
         private async void Button_Play(object sender, RoutedEventArgs e)
         {
-            if (await Controller.PlayByName("",DCM.selectedCharaName))
+            if (await Controller.PlayByName("", DCM.selectedCharaName))
             {
                 DCM.stateText = "再生に成功しました。";
             }
@@ -56,7 +44,7 @@ namespace KISS4V
 
         private async void Button_Stop(object sender, RoutedEventArgs e)
         {
-            if (await Controller.StopByName(voiceroidName:DCM.selectedCharaName))
+            if (await Controller.StopByName(voiceroidName: DCM.selectedCharaName))
             {
                 DCM.stateText = "停止に成功しました。";
             }

@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="KISS4V.common"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KISS4V"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Loaded="UserControl_Loaded">
+    <StackPanel>
+        <CheckBox IsChecked="{Binding ShowSettingWindow}">アプリ起動時に設定ウィンドウを表示する</CheckBox>
+        <CheckBox x:Name="StartUp" Click="CheckBox_StartUp">PC起動時にアプリを起動する</CheckBox>
+        <Button Click="Button_OpenStartUp">スタートアップフォルダを開く</Button>
+    </StackPanel>
+</UserControl>

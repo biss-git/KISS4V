@@ -75,20 +75,20 @@ namespace RucheHome.Voiceroid
                 {
                     switch (id)
                     {
-                    case VoiceroidId.Voiceroid2:
-                        // VOICEROID2プロセス作成
-                        processes.Add(new Voiceroid2Impl());
-                        break;
+                        case VoiceroidId.Voiceroid2:
+                            // VOICEROID2プロセス作成
+                            processes.Add(new Voiceroid2Impl());
+                            break;
 
-                    case VoiceroidId.GynoidTalk:
-                        // ガイノイドTalkプロセス作成
-                        processes.Add(new GynoidTalkImpl());
-                        break;
+                        case VoiceroidId.GynoidTalk:
+                            // ガイノイドTalkプロセス作成
+                            processes.Add(new GynoidTalkImpl());
+                            break;
 
-                    default:
-                        // VOICEROID+ EX 互換プロセス作成
-                        processes.Add(new PlusExImpl(id));
-                        break;
+                        default:
+                            // VOICEROID+ EX 互換プロセス作成
+                            processes.Add(new PlusExImpl(id));
+                            break;
                     }
                 }
             }

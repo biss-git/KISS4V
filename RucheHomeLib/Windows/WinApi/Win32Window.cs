@@ -106,20 +106,20 @@ namespace RucheHome.Windows.WinApi
                     int command;
                     switch (value)
                     {
-                    case WindowState.Normal:
-                        command = SW_SHOWNOACTIVATE;
-                        break;
-                    case WindowState.Maximized:
-                        command = SW_MAXIMIZED;
-                        break;
-                    case WindowState.Minimized:
-                        command = SW_SHOWMINNOACTIVE;
-                        break;
-                    default:
-                        throw new InvalidEnumArgumentException(
-                            nameof(value),
-                            (int)value,
-                            value.GetType());
+                        case WindowState.Normal:
+                            command = SW_SHOWNOACTIVATE;
+                            break;
+                        case WindowState.Maximized:
+                            command = SW_MAXIMIZED;
+                            break;
+                        case WindowState.Minimized:
+                            command = SW_SHOWMINNOACTIVE;
+                            break;
+                        default:
+                            throw new InvalidEnumArgumentException(
+                                nameof(value),
+                                (int)value,
+                                value.GetType());
                     }
                     ShowWindow(this.Handle, command);
                 }

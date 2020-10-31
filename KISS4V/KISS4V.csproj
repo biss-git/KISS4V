@@ -135,6 +135,9 @@
     <Compile Include="api.xaml.cs">
       <DependentUpon>api.xaml</DependentUpon>
     </Compile>
+    <Compile Include="common.xaml.cs">
+      <DependentUpon>common.xaml</DependentUpon>
+    </Compile>
     <Compile Include="listen.xaml.cs">
       <DependentUpon>listen.xaml</DependentUpon>
     </Compile>
@@ -142,6 +145,10 @@
       <DependentUpon>talk.xaml</DependentUpon>
     </Compile>
     <Page Include="api.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="common.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RucheHome.Util;
+using System;
 using System.Net;
 using System.Net.Cache;
 using System.Reflection;
@@ -7,7 +8,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
-using RucheHome.Util;
 
 namespace RucheHome.Net
 {

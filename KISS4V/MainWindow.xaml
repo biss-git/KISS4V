@@ -44,7 +44,7 @@
                         <Image x:Name="commonImage" Source="{Binding tabImage1}" Style="{StaticResource HoverImageStyle}"/>
                     </DockPanel>
                 </TabItem.Header>
-                <Label x:Name="common">aaa</Label>
+                <local:common x:Name="common"/>
                 <!--<local:Input x:Name="input" Drop="Window_Drop" PreviewDragOver="Window_PreviewDragOver" AllowDrop="True"/>-->
             </TabItem>
             <TabItem>

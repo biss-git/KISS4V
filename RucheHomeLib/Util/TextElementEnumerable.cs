@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -29,7 +28,7 @@ namespace RucheHome.Util
         /// <returns>文字列挙子。</returns>
         public IEnumerator<string> GetEnumerator()
         {
-            for (var e = StringInfo.GetTextElementEnumerator(this.Text); e.MoveNext(); )
+            for (var e = StringInfo.GetTextElementEnumerator(this.Text); e.MoveNext();)
             {
                 yield return e.GetTextElement();
             }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RucheHome.Voiceroid
+﻿namespace RucheHome.Voiceroid
 {
     partial class ProcessFactory
     {

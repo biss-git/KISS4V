@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using System.Windows;
-using System.Diagnostics;
 
 namespace KISS4V
 {
@@ -17,7 +11,7 @@ namespace KISS4V
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             string myProcessName = Process.GetCurrentProcess().ProcessName;
-            if(Process.GetProcessesByName(myProcessName).Length > 1)
+            if (Process.GetProcessesByName(myProcessName).Length > 1)
             {
                 MessageBox.Show(myProcessName + " はすでに起動しています。\n多重起動はできません。");
                 this.Shutdown();

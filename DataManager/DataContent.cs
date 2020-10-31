@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DataManager.Properties;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using DataManager.Properties;
 
 namespace DataManager
 {
@@ -14,6 +8,13 @@ namespace DataManager
         static public DataContent Instance { get; } = new DataContent();
         private DataContent() { }
 
+
+
+        /**
+         * 
+         * 画面全体
+         * 
+         */
 
         public string tabImage1 { get { return tabImage1_; } set { tabImage1_ = value; OnPropertyChanged(nameof(tabImage1)); } }
         string tabImage1_ = "./image/common_active.png";
@@ -45,11 +46,23 @@ namespace DataManager
 
 
 
+        /**
+         * 
+         * 共通・設定 common
+         * 
+         */
+
+
+
+        public bool ShowSettingWindow { get { return Settings.Default.ShowSettingWindow; } set { Settings.Default.ShowSettingWindow = value; OnPropertyChanged(nameof(ShowSettingWindow)); Save(); } }
+
+
+
 
 
         /**
          * 
-         *  ユーザー設定
+         *  ボイスロイド関係
          * 
          */
 
@@ -59,6 +72,9 @@ namespace DataManager
 
 
         public string selectedCharaName { get { return Settings.Default.SelectedCharaName; } set { Settings.Default.SelectedCharaName = value; OnPropertyChanged(nameof(selectedCharaName)); Save(); } }
+        public int FileNameRuleIndex { get { return Settings.Default.FileNameRuleIndex; } set { Settings.Default.FileNameRuleIndex = value; OnPropertyChanged(nameof(FileNameRuleIndex)); Save(); } }
+
+        
 
         public string Voiceroid2Exe { get { return Settings.Default.Voiceroid2Exe; } set { Settings.Default.Voiceroid2Exe = value; OnPropertyChanged(nameof(Voiceroid2Exe)); Save(); } }
         public string GynoidTalkExe { get { return Settings.Default.GynoidTalkExe; } set { Settings.Default.GynoidTalkExe = value; OnPropertyChanged(nameof(GynoidTalkExe)); Save(); } }
@@ -117,6 +133,19 @@ namespace DataManager
             }
         }
 
+
+
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// ユーザー設定の保存
+        /// </summary>
         public static void Save()
         {
             Settings.Default.Save();

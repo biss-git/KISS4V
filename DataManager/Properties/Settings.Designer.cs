@@ -244,5 +244,29 @@ namespace DataManager.Properties {
                 return ((int)(this["ApiPort"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowSettingWindow {
+            get {
+                return ((bool)(this["ShowSettingWindow"]));
+            }
+            set {
+                this["ShowSettingWindow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int FileNameRuleIndex {
+            get {
+                return ((int)(this["FileNameRuleIndex"]));
+            }
+            set {
+                this["FileNameRuleIndex"] = value;
+            }
+        }
     }
 }

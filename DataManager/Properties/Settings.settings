@@ -59,5 +59,11 @@
     <Setting Name="ApiPort" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">51008</Value>
     </Setting>
+    <Setting Name="ShowSettingWindow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="FileNameRuleIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

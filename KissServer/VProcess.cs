@@ -1,8 +1,5 @@
 ﻿using RucheHome.Voiceroid;
 using System;
-using System.Collections.Generic;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace KissServer
@@ -13,7 +10,7 @@ namespace KissServer
 
         public string voiceroidName { get; set; }
         public string Name { get; set; }
-        public string Product {get;set;}
+        public string Product { get; set; }
         public string DisplayProduct { get; set; }
         public bool HasMultiCharacters { get; set; }
         public bool CanSaveBlankText { get; set; }

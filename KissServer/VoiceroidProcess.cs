@@ -1,10 +1,7 @@
 ﻿using RucheHome.Voiceroid;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using VoiceroidController;
@@ -49,7 +46,8 @@ namespace KissServer
                         voiceroidName = req.QueryString["voiceroidName"];
                     }
                 }
-                if (voiceroidName == null) {
+                if (voiceroidName == null)
+                {
                     res.StatusCode = 400;
                     return "";
                 }
@@ -86,9 +84,10 @@ namespace KissServer
                             processExist = true;
                         }
                     }
-                    if (!processExist) {
+                    if (!processExist)
+                    {
                         res.StatusCode = 400;
-                        return "{voiceroidName: \"" +  command.voiceroidName + "\"}";
+                        return "{voiceroidName: \"" + command.voiceroidName + "\"}";
                     }
                 }
                 switch (command.command)

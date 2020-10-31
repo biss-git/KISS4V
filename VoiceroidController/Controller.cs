@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
-using DataManager;
+﻿using DataManager;
 using RucheHome.Voiceroid;
+using System;
+using System.IO;
+using System.Threading.Tasks;
+using System.Timers;
 
 namespace VoiceroidController
 {
@@ -19,6 +16,27 @@ namespace VoiceroidController
 
         static readonly DataContent DCM = DataContent.Instance;
 
+        static Timer timer = new Timer();
+
+        static Controller()
+        {
+            // 1分に一度ボイスロイドのファイルパスを確認
+            timer.Interval = 1 * 60 * 1000;
+            timer.Elapsed += async (s, e) => {
+                await factory.Update();
+                CleanVoiceroid();
+                SearchVoiceroid();
+            };
+            timer.Start();
+        }
+
+        /// <summary>
+        /// DLLやスタティッククラスは一度でも何かを呼び出さないと
+        /// ちゃんとリンクされないので、そのためのトリガー
+        /// </summary>
+        public static void Init()
+        {
+        }
 
         /// <summary>
         /// 再生
@@ -29,7 +47,7 @@ namespace VoiceroidController
         public static async Task<bool> Play(string text = "", VoiceroidId? voiceroidId = null, VoiceroidCommand command = null)
         {
             await factory.Update();
-            foreach( IProcess process in factory.Processes)
+            foreach (IProcess process in factory.Processes)
             {
                 if ((voiceroidId == null || voiceroidId == process.Id) &&
                     (string.IsNullOrWhiteSpace(text) || await SetText(process, text)) &&
@@ -216,7 +234,7 @@ namespace VoiceroidController
             foreach (VoiceroidId id in Enum.GetValues(typeof(VoiceroidId)))
             {
                 string name = Enum.GetName(typeof(VoiceroidId), id);
-                if(voiceroidName == name)
+                if (voiceroidName == name)
                 {
                     return id;
                 }
@@ -237,5 +255,38 @@ namespace VoiceroidController
                 return Path.Combine(folderPath, "fileName.wav");
             }
         }
+
+
+        /// <summary>
+        /// ボイスロイドをのexeファイルの場所を探す。
+        /// </summary>
+        public static void SearchVoiceroid()
+        {
+            foreach (var process in factory.Processes)
+            {
+                string name = Enum.GetName(typeof(VoiceroidId), process.Id);
+                if (!string.IsNullOrEmpty(process.ExecutablePath) && string.IsNullOrEmpty(DCM.GetCharaExe(name)))
+                {
+                    DCM.SetCharaExe(name, process.ExecutablePath);
+                }
+            }
+        }
+
+        /// <summary>
+        /// ボイスロイドのexeファイルが存在しない場合は削除する
+        /// </summary>
+        public static void CleanVoiceroid()
+        {
+            foreach (var process in factory.Processes)
+            {
+                string name = Enum.GetName(typeof(VoiceroidId), process.Id);
+                if (!File.Exists(DCM.GetCharaExe(name)))
+                {
+                    DCM.SetCharaExe(name, "");
+                }
+            }
+        }
+
+
     }
 }

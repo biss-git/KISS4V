@@ -23,8 +23,17 @@
                     <Label Grid.Row="0" Grid.Column="0">保存先フォルダ</Label>
                     <Label Grid.Row="0" Grid.Column="1" BorderBrush="#FFCCCCCC" BorderThickness="1" Content="{Binding saveDirectory}"/>
                     <Button Grid.Row="0" Grid.Column="2" Click="Button_SaveDirectory">選択</Button>
-                    <Label Grid.Row="1" Grid.Column="0">命令バッファサイズ</Label>
-                    <Controls:NumericUpDown Grid.Row="1" Grid.Column="1" Value="{Binding taskBufferSize}" Minimum="1" Maximum="100" TextAlignment="Left"/>
+                    <Label Grid.Row="1" Grid.Column="0">ファイル命名</Label>
+                    <ComboBox Grid.Row="1" Grid.Column="1" SelectedIndex="{Binding FileNameRuleIndex}">
+                        <ComboBoxItem Content="入力文"/>
+                        <ComboBoxItem Content="日時_入力文"/>
+                        <ComboBoxItem Content="キャラ名_入力文"/>
+                        <ComboBoxItem Content="日時_キャラ名_入力文"/>
+                        <ComboBoxItem Content="キャラ名\入力文"/>
+                        <ComboBoxItem Content="キャラ名\日時_入力文"/>
+                    </ComboBox>
+                    <Label Grid.Row="2" Grid.Column="0">命令バッファサイズ</Label>
+                    <Controls:NumericUpDown Grid.Row="2" Grid.Column="1" Value="{Binding taskBufferSize}" Minimum="1" Maximum="100" TextAlignment="Left"/>
                 </Grid>
             </TabItem>
             <TabItem Header="ボイスロイド ">

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RucheHome.Threading;
+using RucheHome.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -6,8 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Automation;
-using RucheHome.Threading;
-using RucheHome.Util;
 
 namespace RucheHome.Voiceroid
 {

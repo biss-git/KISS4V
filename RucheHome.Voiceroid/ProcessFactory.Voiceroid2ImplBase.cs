@@ -1,11 +1,11 @@
-﻿using System;
+﻿using RucheHome.Util;
+using RucheHome.Windows.WinApi;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Automation;
-using RucheHome.Util;
-using RucheHome.Windows.WinApi;
 
 namespace RucheHome.Voiceroid
 {
