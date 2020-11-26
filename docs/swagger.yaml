@@ -96,11 +96,8 @@ paths:
           schema:
             type: "object"
             required:
-            - success
             - command
             properties:
-              success:
-                type: boolean
               command:
                 type: string
               TalkText:

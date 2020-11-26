@@ -32,8 +32,6 @@
                         <ComboBoxItem Content="キャラ名\入力文"/>
                         <ComboBoxItem Content="キャラ名\日時_入力文"/>
                     </ComboBox>
-                    <Label Grid.Row="2" Grid.Column="0">命令バッファサイズ</Label>
-                    <Controls:NumericUpDown Grid.Row="2" Grid.Column="1" Value="{Binding taskBufferSize}" Minimum="1" Maximum="100" TextAlignment="Left"/>
                 </Grid>
             </TabItem>
             <TabItem Header="ボイスロイド ">
@@ -129,7 +127,7 @@
                         <Button Content="起動" Click="Button_Run"/>
                         <Button Content="停止" Click="Button_Exit"/>
                     </StackPanel>
-                    <TextBox AcceptsReturn="True"/>
+                    <TextBox AcceptsReturn="True" Text="{Binding TestTextInput}"/>
                 </DockPanel>
             </TabItem>
         </TabControl>

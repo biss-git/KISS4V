@@ -1,5 +1,6 @@
 ﻿using RucheHome.Voiceroid;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text.Json;
@@ -87,30 +88,32 @@ namespace KissServer
                     if (!processExist)
                     {
                         res.StatusCode = 400;
-                        return "{voiceroidName: \"" + command.voiceroidName + "\"}";
+                        return "{\"voiceroidName\": \"" + command.voiceroidName + "\"}";
                     }
                 }
-                switch (command.command)
+                switch (command.command.ToLower().Trim())
                 {
                     case "play":
                         command.success = await Controller.PlayByName(command.TalkText, command.voiceroidName, command);
-                        return JsonSerializer.Serialize(command);
+                        break;
                     case "stop":
                         command.success = await Controller.StopByName(command.voiceroidName);
-                        return JsonSerializer.Serialize(command);
+                        break;
                     case "save":
                         command.success = !string.IsNullOrWhiteSpace(await Controller.SaveByName(command.TalkText, command.voiceroidName, command: command));
-                        return JsonSerializer.Serialize(command);
+                        break;
                     case "run":
                         command.success = await Controller.RunByName(command.voiceroidName);
-                        return JsonSerializer.Serialize(command);
+                        break;
                     case "exit":
                         command.success = await Controller.ExitByName(command.voiceroidName);
-                        return JsonSerializer.Serialize(command);
+                        break;
                     default:
                         res.StatusCode = 400;
-                        return "{command: \"" + command.command + "\"}";
+                        return "{\"command\": \"" + command.command + "\"}";
                 }
+                if (command.success == false) { res.StatusCode = 503; }
+                return JsonSerializer.Serialize(command);
             }
             catch (Exception e)
             {

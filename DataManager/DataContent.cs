@@ -68,13 +68,13 @@ namespace DataManager
 
 
         public string saveDirectory { get { return Settings.Default.SaveDirectory; } set { Settings.Default.SaveDirectory = value; OnPropertyChanged(nameof(saveDirectory)); Save(); } }
-        public int taskBufferSize { get { return Settings.Default.TaskBufferSize; } set { Settings.Default.TaskBufferSize = value; OnPropertyChanged(nameof(taskBufferSize)); Save(); } }
 
 
         public string selectedCharaName { get { return Settings.Default.SelectedCharaName; } set { Settings.Default.SelectedCharaName = value; OnPropertyChanged(nameof(selectedCharaName)); Save(); } }
         public int FileNameRuleIndex { get { return Settings.Default.FileNameRuleIndex; } set { Settings.Default.FileNameRuleIndex = value; OnPropertyChanged(nameof(FileNameRuleIndex)); Save(); } }
 
-        
+        public string TestTextInput { get { return testTextInput; } set { testTextInput = value; OnPropertyChanged(nameof(selectedCharaName)); } }
+        string testTextInput = "";
 
         public string Voiceroid2Exe { get { return Settings.Default.Voiceroid2Exe; } set { Settings.Default.Voiceroid2Exe = value; OnPropertyChanged(nameof(Voiceroid2Exe)); Save(); } }
         public string GynoidTalkExe { get { return Settings.Default.GynoidTalkExe; } set { Settings.Default.GynoidTalkExe = value; OnPropertyChanged(nameof(GynoidTalkExe)); Save(); } }
@@ -137,8 +137,13 @@ namespace DataManager
 
 
 
+        /**
+         * 
+         * 音声認識
+         * 
+         */
 
-
+        public bool ListenActive { get { return Settings.Default.ListenActive; } set { Settings.Default.ListenActive = value; OnPropertyChanged(nameof(ListenActive)); Save(); } }
 
 
 

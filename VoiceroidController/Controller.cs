@@ -2,6 +2,7 @@
 using RucheHome.Voiceroid;
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 
@@ -104,18 +105,18 @@ namespace VoiceroidController
         public static async Task<string> Save(string text = "", VoiceroidId? voiceroidId = null, string filePathRequest = null, VoiceroidCommand command = null)
         {
             await factory.Update();
-            string filePath = string.IsNullOrWhiteSpace(filePathRequest) ?
-                              DefaultFilePath :
-                              filePathRequest;
-            if (!FilePathUtil.IsValidPath(filePath, out string invalidLetter))
-            {
-                return null;
-            }
             foreach (IProcess process in factory.Processes)
             {
                 if ((voiceroidId == null || voiceroidId == process.Id) &&
+                    process.IsRunning && !process.IsPlaying && !process.IsDialogShowing && !process.IsSaving && !process.IsStartup&&
                     (string.IsNullOrWhiteSpace(text) || await SetText(process, text)))
                 {
+                    string charaName = await process.GetCharacterName();
+                    string talkText = await process.GetTalkText();
+                    string filePath = string.IsNullOrWhiteSpace(filePathRequest) ?
+                                      GetDefaultFilePath(charaName, talkText) :
+                                      filePathRequest;
+                    if (!FilePathUtil.IsValidPath(filePath, out string invalidLetter)){ break;}
                     var result = await process.Save(filePath);
                     if (result.IsSucceeded)
                     {
@@ -234,12 +235,54 @@ namespace VoiceroidController
             foreach (VoiceroidId id in Enum.GetValues(typeof(VoiceroidId)))
             {
                 string name = Enum.GetName(typeof(VoiceroidId), id);
-                if (voiceroidName == name)
+                if (voiceroidName?.ToLower().Trim() == name.ToLower())
                 {
                     return id;
                 }
             }
             return null;
+        }
+
+
+        public static string GetDefaultFilePath(string chara, string text)
+        {
+            if (text == null) { text = ""; }
+            string folderPath = Directory.Exists(DCM.saveDirectory) ?
+                                DCM.saveDirectory :
+                                ConstData.DefaultFolder;
+            string date = DateTime.Now.ToString("yyMMdd-HHmmss");
+            Path.GetInvalidFileNameChars().ToList().ForEach(c =>
+            {
+                chara = chara.Replace(c, 'x');
+                text = text.Replace(c, 'x');
+            });
+            if (chara.Length > 10)
+            {
+                chara = chara.Substring(0, 10) + "+";
+            }
+            if (text.Length > 10)
+            {
+                text = text.Substring(0, 10) + "+";
+            }
+            string fileName = "fileName";
+            switch (DCM.FileNameRuleIndex)
+            {
+                case 0: fileName = text; break;
+                case 1: fileName = date + "_" + text; break;
+                case 2: fileName = chara + "_" + text; break;
+                case 3: fileName = date + "_" + chara + "_" + text; break;
+                case 4: fileName = chara + "\\" + text; break;
+                case 5: fileName = chara + "\\" + date + "_" + text; break;
+            }
+            if(DCM.FileNameRuleIndex >= 4)
+            {
+                string charaFolder = Path.Combine(folderPath, chara);
+                if (!Directory.Exists(charaFolder))
+                {
+                    Directory.CreateDirectory(charaFolder);
+                }
+            }
+            return Path.Combine(folderPath, fileName + ".wav");
         }
 
         /// <summary>

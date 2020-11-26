@@ -215,18 +215,6 @@ namespace DataManager.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int TaskBufferSize {
-            get {
-                return ((int)(this["TaskBufferSize"]));
-            }
-            set {
-                this["TaskBufferSize"] = value;
-            }
-        }
-        
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("api")]
@@ -266,6 +254,18 @@ namespace DataManager.Properties {
             }
             set {
                 this["FileNameRuleIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ListenActive {
+            get {
+                return ((bool)(this["ListenActive"]));
+            }
+            set {
+                this["ListenActive"] = value;
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Diagnostics;
+using System.Windows.Controls;
 
 namespace KISS4V
 {
@@ -11,6 +12,11 @@ namespace KISS4V
         {
             InitializeComponent();
             KissServer.ApiService.Start();
+        }
+
+        private void Button_Swagger(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Process.Start("https://biss-git.github.io/KISS4V/");
         }
     }
 }

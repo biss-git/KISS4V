@@ -19,6 +19,26 @@ namespace VoiceRecognitionLibrary
                 DCM.vrText += "\n 初期化に失敗しました。マイクが接続されているか確認してください。 : " + e.Message;
             }
         }
+
+        public static void Start()
+        {
+            try
+            {
+                SystemSpeech.RecognizeAsync(true); // 音声認識開始
+            }
+            catch (Exception e){}
+        }
+
+        public static void Stop()
+        {
+            try
+            {
+                SystemSpeech.RecognizeAsyncStop(); // 音声認識開始
+            }
+            catch (Exception e) { }
+        }
+
+
         public static void InitializeSystemSpeech_Sub()
         {
             SystemSpeech.CreateEngine();
@@ -40,6 +60,10 @@ namespace VoiceRecognitionLibrary
                     DCM.vrText += words[i];
                 }
                 DCM.vrText += " ] ";
+                if(grammerName == "command")
+                {
+                    VoiceCommand.StandartCommand(text);
+                }
             };
 
             SystemSpeech.SpeechHypothesizedEvent = (grammerName, text, confidence) =>
@@ -59,7 +83,6 @@ namespace VoiceRecognitionLibrary
 
 
             SystemSpeech.AddGrammar();
-            // SystemSpeech.AddDictation();
         }
 
     }

@@ -6,9 +6,59 @@
              xmlns:local="clr-namespace:KISS4V"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <ScrollViewer Height="400">
-            <TextBlock Text="{Binding vrText}" TextWrapping="Wrap"/>
-        </ScrollViewer>
-    </StackPanel>
+    <Grid>
+        <TabControl>
+            <TabItem Header="設定 ">
+                <StackPanel>
+                    <CheckBox IsChecked="{Binding ListenActive}" Click="CheckBox_ListenActive">音声認識を行う</CheckBox>
+                    <Label>応答するボイスロイド</Label>
+                    <ComboBox x:Name="charaCombo" DockPanel.Dock="Top" SelectedIndex="0" SelectionChanged="ComboBox_VoiceroidName">
+                        <ComboBoxItem Content="指定なし" DataContext="DEFAULT"/>
+                        <ComboBoxItem Content="VOICEROID2" DataContext="Voiceroid2"/>
+                        <ComboBoxItem Content="ガイノイドTalk" DataContext="GynoidTalk"/>
+                        <ComboBoxItem Content="結月ゆかり" DataContext="YukariEx"/>
+                        <ComboBoxItem Content="弦巻マキ" DataContext="MakiEx"/>
+                        <ComboBoxItem Content="東北ずん子" DataContext="ZunkoEx"/>
+                        <ComboBoxItem Content="東北きりたん" DataContext="KiritanEx"/>
+                        <ComboBoxItem Content="琴葉茜" DataContext="Akane"/>
+                        <ComboBoxItem Content="琴葉葵" DataContext="Aoi"/>
+                        <ComboBoxItem Content="月読アイ" DataContext="AiEx"/>
+                        <ComboBoxItem Content="月読ショウタ" DataContext="ShoutaEx"/>
+                        <ComboBoxItem Content="京町セイカ" DataContext="SeikaEx"/>
+                        <ComboBoxItem Content="水奈瀬コウ" DataContext="KouEx"/>
+                        <ComboBoxItem Content="ギャラ子" DataContext="GalacoTalk"/>
+                        <ComboBoxItem Content="音街ウナ" DataContext="UnaTalkEx"/>
+                    </ComboBox>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="音声コマンド ">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0">起動コマンド</Label>
+                    <Label Grid.Row="0" Grid.Column="1">ボイロ起動</Label>
+                    <Label Grid.Row="1" Grid.Column="0">再生コマンド</Label>
+                    <Label Grid.Row="1" Grid.Column="1">再生して</Label>
+                    <Label Grid.Row="2" Grid.Column="0">停止コマンド</Label>
+                    <Label Grid.Row="2" Grid.Column="1">停止して</Label>
+                    <Label Grid.Row="3" Grid.Column="0">保存コマンド</Label>
+                    <Label Grid.Row="3" Grid.Column="1">保存して</Label>
+                </Grid>
+            </TabItem>
+            <TabItem Header="デバッグ出力 ">
+                <ScrollViewer Height="400">
+                    <TextBlock Text="{Binding vrText}" TextWrapping="Wrap"/>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Grid>
 </UserControl>

@@ -7,6 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label Content="{Binding rootUrl}"/>
+        <TabControl>
+            <TabItem Header="設定 ">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>apiアドレス
+                        </Label>
+                        <Label Content="{Binding rootUrl}"/>
+                    </StackPanel>
+                    <Button Click="Button_Swagger">api仕様をブラウザで開く</Button>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>

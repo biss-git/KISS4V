@@ -7,9 +7,15 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Loaded="UserControl_Loaded">
-    <StackPanel>
-        <CheckBox IsChecked="{Binding ShowSettingWindow}">アプリ起動時に設定ウィンドウを表示する</CheckBox>
-        <CheckBox x:Name="StartUp" Click="CheckBox_StartUp">PC起動時にアプリを起動する</CheckBox>
-        <Button Click="Button_OpenStartUp">スタートアップフォルダを開く</Button>
-    </StackPanel>
+    <Grid>
+        <TabControl>
+            <TabItem Header="設定 ">
+                <StackPanel>
+                    <CheckBox IsChecked="{Binding ShowSettingWindow}">アプリ起動時に設定ウィンドウを表示する</CheckBox>
+                    <CheckBox x:Name="StartUp" Click="CheckBox_StartUp">PC起動時にアプリを起動する</CheckBox>
+                    <Button Click="Button_OpenStartUp">スタートアップフォルダを開く</Button>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
 </UserControl>

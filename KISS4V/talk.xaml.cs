@@ -32,7 +32,7 @@ namespace KISS4V
 
         private async void Button_Play(object sender, RoutedEventArgs e)
         {
-            if (await Controller.PlayByName("", DCM.selectedCharaName))
+            if (await Controller.PlayByName(DCM.TestTextInput, DCM.selectedCharaName))
             {
                 DCM.stateText = "再生に成功しました。";
             }
@@ -56,7 +56,7 @@ namespace KISS4V
 
         private async void Button_Save(object sender, RoutedEventArgs e)
         {
-            string filePath = await Controller.SaveByName(voiceroidName: DCM.selectedCharaName);
+            string filePath = await Controller.SaveByName(DCM.TestTextInput, DCM.selectedCharaName);
             if (!string.IsNullOrWhiteSpace(filePath))
             {
                 DCM.stateText = "保存に成功しました。 path : " + filePath;

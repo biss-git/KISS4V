@@ -135,11 +135,16 @@ namespace VoiceRecognitionLibrary
 
         public static void AddGrammar()
         {
-            string[] words = new string[] { "ファムス", "ダイナモ", "トルク計", "制御盤", "OK" };
-            AddGrammar("words", words);
+            Engine.UnloadAllGrammars();
+            AddGrammar("wakeup", new string[1] { "デボラ"});
+            string[] commands = new string[] { "ボイスロイドを起動", "ボイロ起動", "再生して", "停止して", "保存して" };
+            AddGrammar("command", commands);
+            string[] timers = new string[] { "今何時？" };
+            AddGrammar("timer", timers);
 
+            /*
             GrammarBuilder grammarBuilder1 = new GrammarBuilder();
-            grammarBuilder1.Append("収録");
+            grammarBuilder1.Append("録音");
             Choices choices1 = new Choices();
             choices1.Add(new string[] { "開始", "停止", "終了" });
             grammarBuilder1.Append(choices1);
@@ -163,6 +168,7 @@ namespace VoiceRecognitionLibrary
             {
 
             }
+            */
         }
 
         /// <summary>
@@ -295,6 +301,7 @@ namespace VoiceRecognitionLibrary
         {
             if (!IsRecognizing)
             {
+                RecognizeAsyncCancel();
                 return;
             }
 
