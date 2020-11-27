@@ -56,6 +56,7 @@ namespace DataManager
 
         public bool ShowSettingWindow { get { return Settings.Default.ShowSettingWindow; } set { Settings.Default.ShowSettingWindow = value; OnPropertyChanged(nameof(ShowSettingWindow)); Save(); } }
 
+        public bool FirstStart { get { return Settings.Default.FirstStart; } set { Settings.Default.FirstStart = value; OnPropertyChanged(nameof(FirstStart)); Save(); } }
 
 
 

@@ -136,11 +136,11 @@ namespace VoiceRecognitionLibrary
         public static void AddGrammar()
         {
             Engine.UnloadAllGrammars();
-            AddGrammar("wakeup", new string[1] { "デボラ"});
+            // AddGrammar("wakeup", new string[1] { "デボラ"});
             string[] commands = new string[] { "ボイスロイドを起動", "ボイロ起動", "再生して", "停止して", "保存して" };
             AddGrammar("command", commands);
-            string[] timers = new string[] { "今何時？" };
-            AddGrammar("timer", timers);
+            // string[] timers = new string[] { "今何時？" };
+            // AddGrammar("timer", timers);
 
             /*
             GrammarBuilder grammarBuilder1 = new GrammarBuilder();

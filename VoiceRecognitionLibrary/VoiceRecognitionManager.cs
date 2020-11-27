@@ -50,6 +50,8 @@ namespace VoiceRecognitionLibrary
 
             SystemSpeech.SpeechRecognizedEvent = (grammerName, confidence, text, words) =>
             {
+                DCM.vrText = "";
+
                 DCM.vrText += "\n" + "確定：" + grammerName + "(" + confidence + ")";
                 DCM.vrText += "\n" + "　　　" + text;
                 DCM.vrText += "\n" + "　　　 [ ";

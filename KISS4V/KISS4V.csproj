@@ -248,6 +248,11 @@
     <Resource Include="image\listen.png" />
     <Resource Include="image\listen_active.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="readme_お読みください.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AdditionalFiles>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)*.dll" "$(TargetDir)system\" /Y</PostBuildEvent>

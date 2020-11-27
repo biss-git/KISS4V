@@ -53,9 +53,20 @@ namespace KISS4V
             String sMnu = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
             linkFile = Path.Combine(sMnu, aplTitle + ".lnk");
 
+            if (DCM.FirstStart)
+            {
+                MakeStartUp();
+                DCM.FirstStart = false;
+            }
+            else if (File.Exists(linkFile))
+            {
+                // リンクは念のため作り直しておく
+                DeleteStartUp();
+                MakeStartUp();
+            }
+
             // スタートアップ有無
             StartUp.IsChecked = File.Exists(linkFile);
-
         }
 
 
@@ -70,53 +81,66 @@ namespace KISS4V
 
             if (StartUp.IsChecked == true)
             {
-                // スタートアップフォルダにショートカット作成
-                try
-                {
-                    string shortcutPath = linkFile;
-                    string targetPath = exeFile;
-
-                    // WshShellを作成
-                    Type t = Type.GetTypeFromCLSID(new Guid("72C24DD5-D70A-438B-8A42-98424B88AFB8"));
-                    dynamic shell = Activator.CreateInstance(t);
-
-                    //WshShortcutを作成
-                    var shortcut = shell.CreateShortcut(shortcutPath);
-                    shortcut.TargetPath = targetPath;
-                    // 引数
-                    //shortcut.Arguments = "/a /b /c";
-                    // コメント
-                    shortcut.Description = "自動生成されたショートカットです。";
-
-                    //ショートカットを作成
-                    shortcut.Save();
-
-                    //後始末
-                    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(shortcut);
-                    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(shell);
-
-                }
-                catch (Exception ex)
-                {
-                }
+                MakeStartUp();
             }
             else
             {
-                // スタートアップフォルダに登録済みか確認
-                if (File.Exists(linkFile))
-                {
-                    try
-                    {
-                        File.Delete(linkFile);
-                    }
-                    catch (IOException ex)
-                    {
-                    }
-                }
+                DeleteStartUp();
             }
 
             // スタートアップ有無
             StartUp.IsChecked = File.Exists(linkFile);
+        }
+
+
+        private void MakeStartUp()
+        {
+            // スタートアップフォルダにショートカット作成
+            try
+            {
+                string shortcutPath = linkFile;
+                string targetPath = exeFile;
+
+                // WshShellを作成
+                Type t = Type.GetTypeFromCLSID(new Guid("72C24DD5-D70A-438B-8A42-98424B88AFB8"));
+                dynamic shell = Activator.CreateInstance(t);
+
+                //WshShortcutを作成
+                var shortcut = shell.CreateShortcut(shortcutPath);
+                shortcut.TargetPath = targetPath;
+                // 引数
+                //shortcut.Arguments = "/a /b /c";
+                // コメント
+                shortcut.Description = "自動生成されたショートカットです。";
+
+                //ショートカットを作成
+                shortcut.Save();
+
+                //後始末
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(shortcut);
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(shell);
+
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        /// <summary>
+        /// スタートアップからリンクを削除
+        /// </summary>
+        private void DeleteStartUp()
+        {
+            if (File.Exists(linkFile))
+            {
+                try
+                {
+                    File.Delete(linkFile);
+                }
+                catch (IOException ex)
+                {
+                }
+            }
         }
 
     }
