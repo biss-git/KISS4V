@@ -1,6 +1,4 @@
-﻿using RucheHome.Util;
-using RucheHome.Windows.WinApi;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -8,6 +6,8 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Automation;
+using RucheHome.Util;
+using RucheHome.Windows.WinApi;
 
 namespace RucheHome.Voiceroid
 {
@@ -663,7 +663,7 @@ namespace RucheHome.Voiceroid
                 // OKボタン押下
                 if (!InvokeElement(okButton))
                 {
-                    throw new InvalidOperationException(@"OKボタンを押下できません。");
+                    throw new InvalidOperationException(@"OKボタンをクリックできません。");
                 }
 
                 // 保存ダイアログが閉じるまで待つ
@@ -978,7 +978,7 @@ namespace RucheHome.Voiceroid
                     ThreadTrace.WriteException(ex);
                     return new FileSaveResult(
                         false,
-                        error: @"音声保存ボタンを押下できませんでした。");
+                        error: @"音声保存ボタンをクリックできませんでした。");
                 }
 
                 // 保存ダイアログアイテムセットを非同期で探す
@@ -989,7 +989,7 @@ namespace RucheHome.Voiceroid
                     var msg =
                         (await this.UpdateDialogShowing()) ?
                             @"音声保存を開始できませんでした。" :
-                            @"ファイル保存ダイアログが見つかりませんでした。";
+                            @"音声保存ダイアログが見つかりませんでした。";
                     return new FileSaveResult(false, error: msg);
                 }
 

@@ -78,6 +78,7 @@ namespace DataManager
         string testTextInput = "";
 
         public string Voiceroid2Exe { get { return Settings.Default.Voiceroid2Exe; } set { Settings.Default.Voiceroid2Exe = value; OnPropertyChanged(nameof(Voiceroid2Exe)); Save(); } }
+        public string AiVoiceExe { get { return Settings.Default.AiVoiceExe; } set { Settings.Default.AiVoiceExe = value; OnPropertyChanged(nameof(AiVoiceExe)); Save(); } }
         public string GynoidTalkExe { get { return Settings.Default.GynoidTalkExe; } set { Settings.Default.GynoidTalkExe = value; OnPropertyChanged(nameof(GynoidTalkExe)); Save(); } }
         public string YukariExExe { get { return Settings.Default.YukariExExe; } set { Settings.Default.YukariExExe = value; OnPropertyChanged(nameof(YukariExExe)); Save(); } }
         public string MakiExExe { get { return Settings.Default.MakiExExe; } set { Settings.Default.MakiExExe = value; OnPropertyChanged(nameof(MakiExExe)); Save(); } }
@@ -97,6 +98,7 @@ namespace DataManager
             switch (chara)
             {
                 case "Voiceroid2": return Voiceroid2Exe;
+                case "AiVoice": return AiVoiceExe;
                 case "GynoidTalk": return GynoidTalkExe;
                 case "YukariEx": return YukariExExe;
                 case "MakiEx": return MakiExExe;
@@ -118,6 +120,7 @@ namespace DataManager
             switch (chara)
             {
                 case "Voiceroid2": Voiceroid2Exe = exe; return;
+                case "AiVoice": AiVoiceExe = exe; return;
                 case "GynoidTalk": GynoidTalkExe = exe; return;
                 case "YukariEx": YukariExExe = exe; return;
                 case "MakiEx": MakiExExe = exe; return;

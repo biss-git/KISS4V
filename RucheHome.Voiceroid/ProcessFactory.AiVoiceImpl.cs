@@ -5,14 +5,14 @@ namespace RucheHome.Voiceroid
     partial class ProcessFactory
     {
         /// <summary>
-        /// ガイノイドTalk用の IProcess インタフェース実装クラス。
+        /// A.I.VOICE用の IProcess インタフェース実装クラス。
         /// </summary>
-        private sealed class GynoidTalkImpl : Voiceroid2ImplBase
+        private class AiVoiceImpl : Voiceroid2ImplBase
         {
             /// <summary>
             /// コンストラクタ。
             /// </summary>
-            public GynoidTalkImpl() : base(VoiceroidId.GynoidTalk, true)
+            public AiVoiceImpl() : base(VoiceroidId.AiVoice, false)
             {
             }
 
@@ -29,7 +29,7 @@ namespace RucheHome.Voiceroid
             /// スプラッシュウィンドウ等の判別用に用いる。
             /// </remarks>
             protected override bool IsMainWindowTitle(string title) =>
-                title?.Contains(@"ガイノイドTalk") == true;
+                title?.Contains(@"A.I.VOICE") == true;
 
             #endregion
         }

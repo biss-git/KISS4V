@@ -1,4 +1,6 @@
-﻿namespace RucheHome.Voiceroid
+﻿using System;
+
+namespace RucheHome.Voiceroid
 {
     partial class ProcessFactory
     {
@@ -10,7 +12,7 @@
             /// <summary>
             /// コンストラクタ。
             /// </summary>
-            public Voiceroid2Impl() : base(VoiceroidId.Voiceroid2)
+            public Voiceroid2Impl() : base(VoiceroidId.Voiceroid2, true)
             {
             }
 

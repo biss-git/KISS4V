@@ -41,7 +41,7 @@ paths:
       - name: "voiceroidName"
         type: string
         in: "query"
-        description: "ボイスロイド名 (Voiceroid2 | GynoidTalk | YukariEx | MakiEx | ZunkoEx | KiritanEx | Akane | Aoi | AiEx | ShoutaEx | SeikaEx | KouEx | GalacoTalk | UnaTalkEx)"
+        description: "ボイスロイド名 (AiVoice | Voiceroid2 | GynoidTalk | YukariEx | MakiEx | ZunkoEx | KiritanEx | Akane | Aoi | AiEx | ShoutaEx | SeikaEx | KouEx | GalacoTalk | UnaTalkEx)"
       responses:
         "200":
           description: "成功時のレスポンス"
