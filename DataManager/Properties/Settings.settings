@@ -63,7 +63,7 @@
       <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="ListenActive" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="FirstStart" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
